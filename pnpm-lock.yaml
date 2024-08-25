@@ -52,6 +52,9 @@ dependencies:
     version: 3.14.2
 
 devDependencies:
+  '@golevelup/ts-jest':
+    specifier: ^0.5.4
+    version: 0.5.4
   '@nestjs/cli':
     specifier: ^10.0.0
     version: 10.4.4
@@ -94,6 +97,9 @@ devDependencies:
   jest:
     specifier: ^29.5.0
     version: 29.7.0(@types/node@20.16.1)(ts-node@10.9.2)
+  jest-mock-extended:
+    specifier: ^3.0.7
+    version: 3.0.7(jest@29.7.0)(typescript@5.5.4)
   prettier:
     specifier: ^3.0.0
     version: 3.3.3
@@ -574,6 +580,10 @@ packages:
   /@eslint/js@8.57.0:
     resolution: {integrity: sha512-Ys+3g2TaW7gADOJzPt83SJtCDhMjndcDMFVQ/Tj9iA1BfJzFKD9mAUXT3OenpuPHbI6P/myECxRJrofUsDx/5g==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    dev: true
+
+  /@golevelup/ts-jest@0.5.4:
+    resolution: {integrity: sha512-2djwElTE0dMyjK6uYk7YqGs5BoA++O+bqhzDVsWHXrUD9XlOj3Ig0JeyILC8P7eBvSbWPaA61xaJX4doDvi4oQ==}
     dev: true
 
   /@humanwhocodes/config-array@0.11.14:
@@ -3621,6 +3631,17 @@ packages:
       stack-utils: 2.0.6
     dev: true
 
+  /jest-mock-extended@3.0.7(jest@29.7.0)(typescript@5.5.4):
+    resolution: {integrity: sha512-7lsKdLFcW9B9l5NzZ66S/yTQ9k8rFtnwYdCNuRU/81fqDWicNDVhitTSPnrGmNeNm0xyw0JHexEOShrIKRCIRQ==}
+    peerDependencies:
+      jest: ^24.0.0 || ^25.0.0 || ^26.0.0 || ^27.0.0 || ^28.0.0 || ^29.0.0
+      typescript: ^3.0.0 || ^4.0.0 || ^5.0.0
+    dependencies:
+      jest: 29.7.0(@types/node@20.16.1)(ts-node@10.9.2)
+      ts-essentials: 10.0.2(typescript@5.5.4)
+      typescript: 5.5.4
+    dev: true
+
   /jest-mock@29.7.0:
     resolution: {integrity: sha512-ITOMZn+UkYS4ZFh83xYAOzWStloNzJFO2s8DWrE4lhtGD+AorgnbkiKERe4wQVBydIGPx059g6riW5Btp6Llnw==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
@@ -5089,6 +5110,17 @@ packages:
     engines: {node: '>=16'}
     peerDependencies:
       typescript: '>=4.2.0'
+    dependencies:
+      typescript: 5.5.4
+    dev: true
+
+  /ts-essentials@10.0.2(typescript@5.5.4):
+    resolution: {integrity: sha512-Xwag0TULqriaugXqVdDiGZ5wuZpqABZlpwQ2Ho4GDyiu/R2Xjkp/9+zcFxL7uzeLl/QCPrflnvpVYyS3ouT7Zw==}
+    peerDependencies:
+      typescript: '>=4.5.0'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
     dependencies:
       typescript: 5.5.4
     dev: true
