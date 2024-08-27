@@ -26,7 +26,7 @@ import { CacheService } from './cache/cache.service';
     CacheModule.registerAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => {
-        const redisUrl = configService.get('REDIS_URL');
+        const redisUrl = configService.get('redis.url');
 
         if (!redisUrl) {
           throw new Error('REDIS_URL is not defined');
@@ -35,8 +35,6 @@ import { CacheService } from './cache/cache.service';
         return {
           isGlobal: true,
           store: redisStore,
-          host: configService.get('redis.host'),
-          port: configService.get('redis.port'),
           url: redisUrl,
           no_ready_check: true,
           ttl: 10,
