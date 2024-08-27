@@ -26,16 +26,18 @@ import { CacheService } from './cache/cache.service';
     CacheModule.registerAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => {
-        const username = configService.get('redis.username');
-        const password = configService.get('redis.password');
+        const redisUrl = configService.get('REDIS_URL');
+
+        if (!redisUrl) {
+          throw new Error('REDIS_URL is not defined');
+        }
 
         return {
           isGlobal: true,
           store: redisStore,
           host: configService.get('redis.host'),
           port: configService.get('redis.port'),
-          ...(username && { username }),
-          ...(password && { password }),
+          url: redisUrl,
           no_ready_check: true,
           ttl: 10,
         };
