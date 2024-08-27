@@ -5,7 +5,7 @@ import {
   NestModule,
   RequestMethod,
 } from '@nestjs/common';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ConfigModule } from '@nestjs/config';
 import config from '../config';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { TransformResponseInterceptor } from './interceptors/transform-response/transform-response.interceptor';
@@ -24,9 +24,8 @@ import { CacheService } from './cache/cache.service';
       load: [config],
     }),
     CacheModule.registerAsync({
-      imports: [ConfigModule],
-      useFactory: async (configService: ConfigService) => {
-        const redisUrl = configService.get('redis.url');
+      useFactory: async () => {
+        const redisUrl = process.env.REDIS_URL;
 
         if (!redisUrl) {
           throw new Error('REDIS_URL is not defined');
@@ -40,7 +39,6 @@ import { CacheService } from './cache/cache.service';
           ttl: 10,
         };
       },
-      inject: [ConfigService],
     }),
     DatabaseModule,
   ],
