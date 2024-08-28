@@ -5,7 +5,7 @@ import {
   NestModule,
   RequestMethod,
 } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import config from '../config';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { TransformResponseInterceptor } from './interceptors/transform-response/transform-response.interceptor';
@@ -24,21 +24,22 @@ import { CacheService } from './cache/cache.service';
       load: [config],
     }),
     CacheModule.registerAsync({
-      useFactory: async () => {
-        const redisUrl = process.env.REDIS_URL;
-
-        if (!redisUrl) {
-          throw new Error('REDIS_URL is not defined');
-        }
+      useFactory: async (configService: ConfigService) => {
+        const username = configService.get('redis.username');
+        const password = configService.get('redis.password');
 
         return {
           isGlobal: true,
           store: redisStore,
-          url: redisUrl,
+          host: configService.get('redis.host'),
+          port: configService.get('redis.port'),
+          ...(username && { username }),
+          ...(password && { password }),
           no_ready_check: true,
           ttl: 10,
         };
       },
+      inject: [ConfigService],
     }),
     DatabaseModule,
   ],
