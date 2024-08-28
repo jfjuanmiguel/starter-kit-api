@@ -41,33 +41,98 @@ To use the logger in your services or controllers, inject the `LoggerService` an
 
 ## Getting Started
 
-1. Clone the repository:
-
+1. Go to the NestJS Starter Github repo:
+2. Press the "Use this template" button to create a new repository.
+3. Follow the steps to create a new Github repo from the template.
+4. Clone the repository:
    ```
    git clone https://github.com/jfjuanmiguel/nestjs-starter.git
    ```
 
-2. Install dependencies:
+## Local Development
 
+1. Install dependencies:
    ```
    pnpm install
    ```
-
-3. Set up your environment variables:
+2. Set up your environment variables:
    Copy `.env.example` to `.env` and fill in the required values.
-
-4. Start the development server:
+3. Start the development server:
    ```
    pnpm start:dev
    ```
+   The NestJS Starter project has 2 Docker Compose files: In both files, you need to update the name of the containers and networks where it says `# Needs updating`.
 
-## Common Commands
+For example, here's an updated `docker-compose.yml` file for a project called `URL Shortener`:
 
-- `pnpm start`: Start the application
-- `pnpm start:dev`: Start the application in watch mode
-- `pnpm test`: Run unit tests
-- `pnpm test:e2e`: Run end-to-end tests
-- `pnpm lint`: Lint the codebase
-- `pnpm build`: Build the application
-- `pnpm db:migrate:dev`: Run database migrations for development
-- `pnpm db:migrate:prod`: Run database migrations for production
+```
+version: '3.8'
+
+services:
+  postgres_url_shortener: # Updated
+    image: postgres:alpine
+    container_name: postgres_url_shortener # Updated
+    restart: always
+    env_file:
+      - .env
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis_url_shortener: # Updated
+    image: redis:alpine
+    container_name: redis_url_shortener # Updated
+    ports:
+      - '6379:6379'
+    volumes:
+      - redis_data:/data
+
+networks:
+  default:
+    name: url_shortener # Updated
+
+volumes:
+  postgres_data:
+  redis_data:
+```
+
+Make sure you remember to also update the `docker-compose-test.yml` file!
+
+This repo comes with a default `User` model out of the box defined in the `/src/database/schema.prisma` file:
+
+```
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+```
+
+Before you can run the local server, you need to apply this migration to your local Postgres database.
+
+Make sure on your local machine you don't have any existing Docker containers running that would cause a conflict.
+
+Then spin up the local Postgres and Redis containers:
+
+```
+pnpm docker:start
+```
+
+Then run this script to apply the migration to your local Postgres database:
+
+```
+pnpm db:migrate:dev
+```
+
+And you're ready to go!
+
+You can now start the local server:
+
+```
+pnpm start:dev
+```
