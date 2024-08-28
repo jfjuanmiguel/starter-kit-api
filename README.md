@@ -1,85 +1,73 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# NestJS Starter Project
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+This NestJS starter project serves as a robust foundation for building scalable and maintainable backend applications. It incorporates best practices, essential modules, and configurations to jumpstart your development process.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Features
 
-## Description
+- **Enhanced TypeScript Configuration**: Improved `tsconfig.json` for stricter type checking and better developer experience.
+- **Environment Configuration**: Utilizes `ConfigModule` for managing environment variables, including Jest setup.
+- **Consistent HTTP Responses**: Enforces a standardized structure for all HTTP responses.
+- **Basic HTTP Security**: Implements essential security measures to protect your application.
+- **Request Validation**: Incorporates whitelisted validation for incoming requests.
+- **Advanced Logging**: Utilizes Winston for comprehensive logging capabilities.
+- **Database Setup**: Docker Compose configuration for PostgreSQL and Redis.
+- **ORM Integration**: Prisma setup for efficient database interactions.
+- **Caching Solution**: Redis integration with a CacheService for improved performance.
+- **Testing Framework**: Jest configuration with environment variable support.
+- **CI Pipeline**: GitHub Actions setup for continuous integration.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Core Module
 
-## Project setup
+The Core Module (`CoreModule`) serves as the central hub for essential application-wide services and configurations. It includes:
 
-```bash
-$ pnpm install
-```
+- Global exception filters
+- Interceptors for response transformation
+- Logging service
+- Caching service
+- Database module
 
-## Compile and run the project
+When extending core functionality, consider adding services or providers to this module if they are required application-wide.
 
-```bash
-# development
-$ pnpm run start
+## Logging
 
-# watch mode
-$ pnpm run start:dev
+This starter uses Winston for advanced logging capabilities. The `LoggerService` in the Core Module provides:
 
-# production mode
-$ pnpm run start:prod
-```
+- Customizable log formats for different environments
+- Log levels (error, warn, info, debug, verbose)
+- Context-based logging
+- Metadata support for detailed log entries
 
-## Run tests
+To use the logger in your services or controllers, inject the `LoggerService` and utilize its methods for consistent logging across your application.
 
-```bash
-# unit tests
-$ pnpm run test
+## Getting Started
 
-# e2e tests
-$ pnpm run test:e2e
+1. Clone the repository:
 
-# test coverage
-$ pnpm run test:cov
-```
+   ```
+   git clone https://github.com/jfjuanmiguel/nestjs-starter.git
+   ```
 
-## Resources
+2. Install dependencies:
 
-Check out a few resources that may come in handy when working with NestJS:
+   ```
+   pnpm install
+   ```
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+3. Set up your environment variables:
+   Copy `.env.example` to `.env` and fill in the required values.
 
-## Support
+4. Start the development server:
+   ```
+   pnpm start:dev
+   ```
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+## Common Commands
 
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+- `pnpm start`: Start the application
+- `pnpm start:dev`: Start the application in watch mode
+- `pnpm test`: Run unit tests
+- `pnpm test:e2e`: Run end-to-end tests
+- `pnpm lint`: Lint the codebase
+- `pnpm build`: Build the application
+- `pnpm db:migrate:dev`: Run database migrations for development
+- `pnpm db:migrate:prod`: Run database migrations for production
