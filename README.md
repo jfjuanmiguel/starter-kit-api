@@ -1,6 +1,6 @@
-# NestJS Starter Project
+# Starter Kit API Project
 
-This NestJS starter project serves as a robust foundation for building scalable and maintainable backend applications. It incorporates best practices, essential modules, and configurations to jumpstart your development process.
+This Starter Kit API project serves as a robust foundation for building scalable and maintainable backend applications. It incorporates best practices, essential modules, and configurations to jumpstart your development process.
 
 ## Features
 
@@ -41,37 +41,33 @@ To use the logger in your services or controllers, inject the `LoggerService` an
 
 ## Getting Started
 
-1. Go to the NestJS Starter Github repo:
+1. Go to the [Starter Kit API](https://github.com/jfjuanmiguel/starter-kit-api) Github repo:
 2. Press the "Use this template" button to create a new repository.
 3. Follow the steps to create a new Github repo from the template.
-4. Clone the repository:
+4. Clone the repository on your local machine:
    ```
-   git clone https://github.com/jfjuanmiguel/nestjs-starter.git
+   git clone https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
    ```
-
-## Local Development
-
-1. Install dependencies:
+5. Install dependencies:
    ```
    pnpm install
    ```
-2. Set up your environment variables:
+6. Set up your environment variables:
    Copy `.env.example` to `.env` and fill in the required values.
-3. Start the development server:
+7. Start the development server:
    ```
    pnpm start:dev
    ```
-   The NestJS Starter project has 2 Docker Compose files: In both files, you need to update the name of the containers and networks where it says `# Needs updating`.
 
-For example, here's an updated `docker-compose.yml` file for a project called `URL Shortener`:
+The Starter Kit API project has 2 Docker Compose files: In both files, you need to update the name of the containers and networks where it says `# Needs updating`, for example `your_project_name` to the name of your project.
 
 ```
 version: '3.8'
 
 services:
-  postgres_url_shortener: # Updated
+  postgres_your_project_name: # Needs updating
     image: postgres:alpine
-    container_name: postgres_url_shortener # Updated
+    container_name: postgres_your_project_name # Needs updating
     restart: always
     env_file:
       - .env
@@ -83,9 +79,9 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
-  redis_url_shortener: # Updated
+  redis_your_project_name: # Needs updating
     image: redis:alpine
-    container_name: redis_url_shortener # Updated
+    container_name: redis_your_project_name # Needs updating
     ports:
       - '6379:6379'
     volumes:
@@ -93,7 +89,7 @@ services:
 
 networks:
   default:
-    name: url_shortener # Updated
+    name: your_project_name # Needs updating
 
 volumes:
   postgres_data:
@@ -135,4 +131,12 @@ You can now start the local server:
 
 ```
 pnpm start:dev
+```
+
+## Testing
+
+This project uses Jest for testing. To run the tests, use the following command:
+
+```
+pnpm test
 ```
