@@ -1,7 +1,7 @@
 services:
-  nestjs_postgres_test:
+  postgres_starter_kit_api_test: # Needs updating
     image: postgres:alpine
-    container_name: test_postgres
+    container_name: postgres_starter_kit_api_test # Needs updating
     restart: 'no'
     env_file:
       - .env.test
@@ -11,25 +11,25 @@ services:
     ports:
       - '5444:5432' # Different port to avoid conflict with the development environment
     volumes:
-      - nestjs_postgres_test:/var/lib/postgresql/data
+      - postgres_data_test:/var/lib/postgresql/data
     healthcheck:
       test: ['CMD-SHELL', 'pg_isready -U $POSTGRES_USER']
       interval: 10s
       timeout: 5s
       retries: 5
 
-  nestjs_redis_test:
+  redis_starter_kit_api_test: # Needs updating
     image: redis:alpine
-    container_name: test_redis
+    container_name: redis_starter_kit_api_test # Needs updating
     ports:
       - '6380:6379' # Different port to avoid conflict with the development environment
     volumes:
-      - nestjs_redis_test:/data
+      - redis_data_test:/data
 
 networks:
   default:
-    name: nestjs_starter_test
+    name: starter_kit_api_test # Needs updating
 
 volumes:
-  nestjs_postgres_test:
-  nestjs_redis_test:
+  postgres_data_test:
+  redis_data_test:

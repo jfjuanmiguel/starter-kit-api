@@ -59,15 +59,13 @@ To use the logger in your services or controllers, inject the `LoggerService` an
    pnpm start:dev
    ```
 
-The Starter Kit API project has 2 Docker Compose files: In both files, you need to update the name of the containers and networks where it says `# Needs updating`, for example `your_project_name` to the name of your project.
+The Starter Kit API project has 2 Docker Compose files: In both files, you need to update the name of the containers and networks where it says `# Needs updating`, for example `starter_kit_api` to the name of your project.
 
 ```
-version: '3.8'
-
 services:
-  postgres_your_project_name: # Needs updating
+  postgres_starter_kit_api: # Needs updating
     image: postgres:alpine
-    container_name: postgres_your_project_name # Needs updating
+    container_name: postgres_starter_kit_api # Needs updating
     restart: always
     env_file:
       - .env
@@ -79,9 +77,9 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
-  redis_your_project_name: # Needs updating
+  redis_starter_kit_api: # Needs updating
     image: redis:alpine
-    container_name: redis_your_project_name # Needs updating
+    container_name: redis_starter_kit_api # Needs updating
     ports:
       - '6379:6379'
     volumes:
@@ -89,7 +87,7 @@ services:
 
 networks:
   default:
-    name: your_project_name # Needs updating
+    name: starter_kit_api # Needs updating
 
 volumes:
   postgres_data:

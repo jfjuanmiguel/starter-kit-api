@@ -1,7 +1,7 @@
 services:
-  nestjs_starter_postgres: # Needs updating
+  postgres_starter_kit_api: # Needs updating
     image: postgres:alpine
-    container_name: nestjs_starter_postgres # Needs updating
+    container_name: postgres_starter_kit_api # Needs updating
     restart: always
     env_file:
       - .env
@@ -11,20 +11,20 @@ services:
     ports:
       - '5432:5432'
     volumes:
-      - nestjs_starter_postgres_data:/var/lib/postgresql/data # Needs updating
+      - postgres_data:/var/lib/postgresql/data
 
-  nestjs_starter_redis: # Needs updating
+  redis_starter_kit_api: # Needs updating
     image: redis:alpine
-    container_name: nestjs_starter_redis # Needs updating
+    container_name: redis_starter_kit_api # Needs updating
     ports:
       - '6379:6379'
     volumes:
-      - nestjs_starter_redis_data:/data # Needs updating
+      - redis_data:/data
 
 networks:
   default:
-    name: nestjs_starter # Needs updating
+    name: starter_kit_api # Needs updating
 
 volumes:
-  nestjs_starter_postgres_data: # Needs updating
-  nestjs_starter_redis_data: # Needs updating
+  postgres_data:
+  redis_data:
